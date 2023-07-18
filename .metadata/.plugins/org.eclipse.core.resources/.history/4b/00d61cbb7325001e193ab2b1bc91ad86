@@ -1,0 +1,30 @@
+package aula;
+
+public class Main {
+	
+	public static void main(String[]args) {
+		
+		/*
+		int idade = 29;
+		System.out.println("minha idade é " + idade);
+		idade = 45;
+		System.out.println("minha idade é " + idade);
+		idade = 35;
+		System.out.println("minha idade é " + idade);	
+		*/
+		
+		//	Tipos de variáveis
+		int numero = 2400000;
+		String frase = "Frase utilizando String";
+		boolean var = true;
+		char var2 = 'a';
+		double var3 = 24.9;
+		
+		System.out.println(numero);
+		System.out.println(frase);
+		System.out.println(var);
+		System.out.println(var2);
+		System.out.println(var3);
+		
+	}	
+}

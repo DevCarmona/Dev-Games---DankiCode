@@ -1,0 +1,72 @@
+package aula;
+
+public class Main {
+	
+	public static void main(String[]args) {
+		
+		/*
+		int idade = 29;
+		System.out.println("minha idade é " + idade);
+		idade = 45;
+		System.out.println("minha idade é " + idade);
+		idade = 35;
+		System.out.println("minha idade é " + idade);	
+		*/
+		
+		//	Tipos de variáveis
+		/*
+		int numero = 2400000;
+		String frase = "Frase utilizando String";
+		boolean var = true;
+		char var2 = 'a';
+		double var3 = 24.9;
+		
+		var3 = 20.9;
+		
+		System.out.println(numero);
+		System.out.println(frase);
+		System.out.println(var);
+		System.out.println(var2);
+		System.out.println(var3);
+		*/
+		
+		//	Constantes
+		/*
+		final int vida_maxima = 100;
+		
+		System.out.println(vida_maxima);
+		*/
+		
+		//	Arrays - Normal e Multi-Dimensional.
+		/*
+		String[] nome = new String[5];
+		nome[0] = "Guilherme.";
+		nome[1] = "Andre.";
+		nome[2] = "João.";
+		
+		System.out.println("Array normal com nome: " + nome[1]);
+		
+		String[][] var2 = new String[5][5];
+		var2[0][0] = "Array multi-dimensional.";
+		
+		System.out.println(var2[0][0]);
+		*/
+		
+		//	Condições
+		
+		int vida = 100;
+		
+		if( vida == 100 ) {
+			vida+=100;
+			System.out.println("Minha vida é igual a 100!");
+		} else {
+			System.out.println("Minha vida não é igual a 100!");
+		}
+		
+		String nome = "Andre";
+		
+		if ( nome == "Andre" ) {
+			System.out.println("Nome igual a " + nome);
+		}
+	}	
+}

@@ -1,0 +1,11 @@
+package aula;
+
+public class Main {
+	
+	public static void main(String[]args) {
+		int idade = 29;
+		idade = 45;
+		System.out.println("Meu primeiro programa em java!" + " com " +idade + " anos.");
+	}
+	
+}
