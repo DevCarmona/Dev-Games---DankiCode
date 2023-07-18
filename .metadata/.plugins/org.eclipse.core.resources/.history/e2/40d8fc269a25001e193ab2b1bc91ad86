@@ -117,16 +117,11 @@ public class Main {
 		} else {
 			System.out.println("Entramos no else!");
 		}
-		
+		*/
 		String nome_jogador = "Andre";
 		int skill = 100;	
-		if ((nome_jogador == "Andre" || nome_jogador == "Joao") && skill >= 100) {
+		if (nome_jogador == "Andre" || nome_jogador == "Joao") {
 			System.out.println("Comece o jogo!");
 		}
-		*/
-		
-		//	Loopings
-		
-		
 	}	
 }

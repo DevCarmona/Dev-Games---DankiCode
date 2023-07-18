@@ -124,9 +124,5 @@ public class Main {
 			System.out.println("Comece o jogo!");
 		}
 		*/
-		
-		//	Loopings
-		
-		
 	}	
 }

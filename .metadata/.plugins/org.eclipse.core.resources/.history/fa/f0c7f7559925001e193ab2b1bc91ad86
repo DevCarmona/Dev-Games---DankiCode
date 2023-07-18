@@ -108,24 +108,15 @@ public class Main {
 		
 		System.out.println(vida_1 + vida_2 + vida_3);
 		System.out.println(vida_final);
-		System.out.println(vida_final2);		
-		
-		String nome_jogador = "Andre";
-		int skill = 100;		
-		if ((nome_jogador == "Andre" && skill == 100) && skill <= 90) {
-			System.out.println("Verdade");
-		} else {
-			System.out.println("Entramos no else!");
-		}
-		
-		String nome_jogador = "Andre";
-		int skill = 100;	
-		if ((nome_jogador == "Andre" || nome_jogador == "Joao") && skill >= 100) {
-			System.out.println("Comece o jogo!");
-		}
+		System.out.println(vida_final2);
 		*/
 		
-		//	Loopings
+		String nome_jogador = "Andre";
+		int skill = 100;
+		
+		if ((nome_jogador == "Andre" && skill == 100) && skill <= 90) {
+			System.out.println("Verdade");
+		}
 		
 		
 	}	
