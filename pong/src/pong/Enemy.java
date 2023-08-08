@@ -12,11 +12,18 @@ public class Enemy {
 		this.x = x;
 		this.y = y;
 		this.width = 40;
-		this.height = 10;
+		this.height = 5;
 	}
 	
 	public void tick() {
+		x+= (Game.ball.x - x - 6) * 0.5;
 		
+		if(x + width > Game.WIDTH) {
+			x = Game.WIDTH - width;
+		}
+		else if( x < 0 ) {
+			x = 0;
+		}
 	}
 	
 	public void render(Graphics g) {
