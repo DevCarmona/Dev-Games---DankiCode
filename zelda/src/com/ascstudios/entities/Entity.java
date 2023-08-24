@@ -17,8 +17,11 @@ public class Entity {
 	public static BufferedImage ENEMY_FEEDBACK = Game.spritesheet.getSprite(16, 32, 16, 16);
 	public static BufferedImage GUN_LEFT = Game.spritesheet.getSprite(8*16, 0, 16, 16);
 	public static BufferedImage GUN_RIGHT = Game.spritesheet.getSprite(7*16, 0, 16, 16);
+	public static BufferedImage GUN_DAMAGE_RIGHT = Game.spritesheet.getSprite(0, 48, 16, 16);
+	public static BufferedImage GUN_DAMAGE_LEFT = Game.spritesheet.getSprite(16, 48, 16, 16);
 	
 	protected double x, y;
+	protected int Z;
 	protected int width, height;
 	
 	public boolean debug = false;
@@ -78,8 +81,10 @@ public class Entity {
 	public static boolean isColliding(Entity e1, Entity e2) {
 		Rectangle e1Mask = new Rectangle(e1.getX() + e1.maskx, e1.getY() + e1.masky, e1.mwidth, e1.mheight);
 		Rectangle e2Mask = new Rectangle(e2.getX() + e2.maskx, e2.getY() + e2.masky, e2.mwidth, e2.mheight);
-		
-		return e1Mask.intersects(e2Mask);
+		if(e1Mask.intersects(e2Mask) && e1.Z == e2.Z) {
+			return true;
+		}
+		return false;
 	}
 
 	public void render(Graphics g) {

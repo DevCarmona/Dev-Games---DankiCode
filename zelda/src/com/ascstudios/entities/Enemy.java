@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import com.ascstudios.main.Game;
+import com.ascstudios.main.Sound;
 import com.ascstudios.world.Camera;
 import com.ascstudios.world.World;
 
@@ -33,22 +34,22 @@ public class Enemy extends Entity{
 	public void tick() {
 		// maskx = 8; masky = 9; maskw = 5; masky = 5;
 		if(isCollidingWithPlayer() == false) {
-			if ((int) x < Game.player.getX() && World.isFree((int) (x + speed), this.getY()) && !isColliding((int) (x + speed), this.getY())) {
+			if ((int) x < Game.player.getX() && World.isFree((int) (x + speed), this.getY(), damageCurrent) && !isColliding((int) (x + speed), this.getY())) {
 				x += speed;
-			} else if ((int) x > Game.player.getX() && World.isFree((int) (x - speed), this.getY()) && !isColliding((int) (x - speed), this.getY())) {
+			} else if ((int) x > Game.player.getX() && World.isFree((int) (x - speed), this.getY(), damageCurrent) && !isColliding((int) (x - speed), this.getY())) {
 				x -= speed;
 			}
-			if ((int) y < Game.player.getY() && World.isFree(this.getX(), (int) (y + speed)) && !isColliding(this.getX(), (int) (y + speed))) {
+			if ((int) y < Game.player.getY() && World.isFree(this.getX(), (int) (y + speed), damageCurrent) && !isColliding(this.getX(), (int) (y + speed))) {
 				y += speed;
-			} else if ((int) y > Game.player.getY() && World.isFree(this.getX(), (int) (y - speed)) && !isColliding(this.getX(), (int) (y - speed))) {
+			} else if ((int) y > Game.player.getY() && World.isFree(this.getX(), (int) (y - speed), damageCurrent) && !isColliding(this.getX(), (int) (y - speed))) {
 				y -= speed;
 			}			
 		}else {
 			//	Estamos colidindo
 			if(Game.rand.nextInt(100) < 10) {
+				Sound.hurtEffect.play();
 				Game.player.life-= Game.rand.nextInt(3);
-				Game.player.isDamaged = true;
-				
+				Game.player.isDamaged = true;				
 				//System.out.println("Vida: " + Game.player.life);
 			}
 		}
@@ -79,6 +80,7 @@ public class Enemy extends Entity{
 	}
 	
 	public void destroySelf() {
+		Game.enemies.remove(this);
 		Game.entities.remove(this);
 	}
 	
