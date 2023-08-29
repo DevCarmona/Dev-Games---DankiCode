@@ -47,6 +47,7 @@ public class Enemy extends Entity{
 		}else {
 			//	Estamos colidindo
 			if(Game.rand.nextInt(100) < 10) {
+				Sound.hurtEffect.setVolume(0.08f);
 				Sound.hurtEffect.play();
 				Game.player.life-= Game.rand.nextInt(3);
 				Game.player.isDamaged = true;				

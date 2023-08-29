@@ -134,7 +134,8 @@ public class Player extends Entity{
 		if(shoot) {
 			shoot = false;
 			if(hasGun && ammo > 0) {
-				ammo--;				
+				ammo--;
+				Sound.peiSound.setVolume(0.08f);
 				Sound.peiSound.play();
 				//	Criar bala e atirar
 				int dx = 0;
@@ -220,10 +221,10 @@ public class Player extends Entity{
 			if(atual instanceof LifePack) {
 				if(Entity.isColliding(this, atual)) {
 					life+= 10;
-					if(life > 100) {
+					if(life >= 100) {
 						life = 100;
-						Game.entities.remove(atual);
 					}
+					Game.entities.remove(atual);
 				}
 			}
 		}
