@@ -12,7 +12,7 @@ public class Sound {
 	
 	public static final Sound musicBackground = new Sound("/music.wav");
 	public static final Sound hurtEffect = new Sound("/hurt.wav");
-	public static final Sound pei = new Sound("/pei.wav");
+	public static final Sound peiSound = new Sound("/peiSound.wav");
 	
 	private Sound(String name) {
 		try {

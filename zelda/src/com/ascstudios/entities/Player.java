@@ -135,7 +135,7 @@ public class Player extends Entity{
 			shoot = false;
 			if(hasGun && ammo > 0) {
 				ammo--;				
-				Sound.pei.play();
+				Sound.peiSound.play();
 				//	Criar bala e atirar
 				int dx = 0;
 				int px = 0;
