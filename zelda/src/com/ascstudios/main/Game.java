@@ -4,17 +4,15 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -27,10 +25,9 @@ import com.ascstudios.entities.Entity;
 import com.ascstudios.entities.Player;
 import com.ascstudios.graficos.Spritesheet;
 import com.ascstudios.graficos.UI;
-import com.ascstudios.world.Camera;
 import com.ascstudios.world.World;
 
-public class Game extends Canvas implements Runnable, KeyListener, MouseListener{
+public class Game extends Canvas implements Runnable, KeyListener, MouseListener, MouseMotionListener{
 	private static final long serialVersionUID = 1L;
 	
 	public static JFrame frame;
@@ -69,6 +66,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static int[] pixels;
 	public static int[] lightMap;
 	
+	//	Rotação de Objetos
+	public int mx, my;
+	
 	public boolean saveGame = false;
 	
 	public Game() {
@@ -77,6 +77,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		rand = new Random();
 		addKeyListener(this);
 		addMouseListener(this);
+		addMouseMotionListener(this);
 		setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		initFrame();
 		//	Inicializando objetos.
@@ -224,6 +225,14 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 			menu.render(g);
 		}
 		/*
+		Graphics2D g2 = (Graphics2D) g;
+		double angleMouse = Math.atan2(200 + 25 - my, 200+ 25 - mx);
+		g2.rotate(angleMouse, 200 + 25, 200 + 25); //	Soma com o 25 acontece pelo tamanho do retangulo ser 50.
+		//	System.out.println(Math.toDegrees(angleMouse)); //	Obter o angulo em radiano..
+		g.setColor(Color.red);
+		g.fillRect(200, 200, 50, 50);
+		*/
+		/*
 		g.setFont(newfont);
 		g.setColor(Color.red);
 		g.drawString("teste nova fonte", 20, 20);
@@ -331,8 +340,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	@Override
 	public void mousePressed(MouseEvent e) {
 		player.mouseShoot = true;
-		player.mx = (e.getX() / 3) + Camera.x;
-		player.my = (e.getY() / 3) + Camera.y;
+		player.mx = (e.getX() / 3);
+		player.my = (e.getY() / 3);
 	}
 
 	@Override
@@ -351,6 +360,18 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		this.mx = e.getX();
+		this.my = e.getY();
 	}
 	
 }
