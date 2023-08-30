@@ -1,4 +1,4 @@
-package com.ascstudios.entities;
+ package com.ascstudios.entities;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;

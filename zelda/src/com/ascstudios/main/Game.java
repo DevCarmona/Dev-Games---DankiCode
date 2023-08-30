@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -12,6 +13,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -53,6 +56,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static Random rand;
 	
 	public UI ui;
+	//Fonte personalizada
+	//public InputStream stream = ClassLoader.getSystemClassLoader().getResourceAsStream("pixelfont.ttf");
+	//public Font newfont;
 	
 	public static String gameState = "MENU";
 	private boolean showMessageGameOver = true;
@@ -60,6 +66,10 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private boolean restartGame= false;
 	
 	public Menu menu;
+	public static int[] pixels;
+	public static int[] lightMap;
+	
+	public boolean saveGame = false;
 	
 	public Game() {
 		Sound.musicBackground.setVolume(0.009f);
@@ -80,6 +90,17 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		player = new Player(0, 0, 16,16, spritesheet.getSprite(32, 0, 16, 16));
 		entities.add(player);
 		world = new World("/level1.png");
+		
+		//	Istanciando a fonte
+		/*
+		try {
+			newfont = Font.createFont(Font.TRUETYPE_FONT, stream).deriveFont(50f);
+		} catch (FontFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		*/
 		
 		menu = new Menu();
 	}
@@ -111,6 +132,13 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	
 	public void tick() {
 		if(gameState == "NORMAL") {
+			if(this.saveGame) {
+				this.saveGame = false;
+				String[] opt1 = {"level", "vida"};
+				int[] opt2 = {this.CUR_LEVEL, (int)player.life};
+				Menu.saveGame(opt1, opt2, 10);
+				System.out.println("Jogo salvo com sucesso");
+			}
 			this.restartGame = false;
 			for(int i = 0; i < entities.size(); i++) {
 				Entity e = entities.get(i);
@@ -195,6 +223,12 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		}else if(gameState == "MENU") {
 			menu.render(g);
 		}
+		/*
+		g.setFont(newfont);
+		g.setColor(Color.red);
+		g.drawString("teste nova fonte", 20, 20);
+		*/
+		
 		bs.show();
 	}
 
@@ -258,6 +292,12 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			gameState = "MENU";
 			menu.pause = true;
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			if(gameState == "NORMAL") {
+				this.saveGame = true;
+			}
 		}
 	}
 

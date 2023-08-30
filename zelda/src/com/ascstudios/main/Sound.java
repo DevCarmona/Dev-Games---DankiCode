@@ -28,6 +28,13 @@ public class Sound {
 		}catch(Throwable e) {}
 	}
 	
+	public void increaseVolume(float step) {
+		setVolume(Math.min(1.0f,  volume + step));
+	}
+	public void decreaseVolume(float step) {
+		setVolume(Math.max(0.0f, volume - step));
+	}
+	
 	public void setVolume(float volume) {
 		if(volume >= 0.0f && volume <= 1.0f) {
 			this.volume = volume;
