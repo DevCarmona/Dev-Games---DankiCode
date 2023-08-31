@@ -13,6 +13,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -64,6 +65,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	
 	public Menu menu;
 	
+	public int[] pixels;
+	
 	//	Rotação de Objetos
 	public int mx, my;
 	
@@ -81,11 +84,12 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		//	Inicializando objetos.
 		ui = new UI();
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+		pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
 		entities = new ArrayList<Entity>();
 		enemies = new ArrayList<Enemy>();
 		bullets = new ArrayList<BulletShoot>();
-		spritesheet = new Spritesheet("/spritesheet.png");
 		
+		spritesheet = new Spritesheet("/spritesheet.png");		
 		player = new Player(0, 0, 16,16, spritesheet.getSprite(32, 0, 16, 16));
 		entities.add(player);
 		world = new World("/level1.png");
@@ -178,6 +182,21 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 			menu.tick();
 		}
 	}
+	/*
+	//	Exemplo de retangulo na tela
+	public void drawRectangleExample(int xoff, int yoff) {
+		for(int xx = 0; xx < 32; xx++) {
+			for(int yy = 0; yy < 32; yy++) {
+				int xOff = xx + xoff;
+				int yOff = yy + yoff;
+				if (xOff < 0 || yOff < 0 || xOff >= WIDTH|| yOff >= HEIGHT) {
+					continue;
+				}
+				pixels[xOff + (yOff * WIDTH)] = 0xff0000;
+			}
+		}
+	}
+	*/
 	
 	public void render() {
 		//	Sequencia de buffers para renderizar os jogos.

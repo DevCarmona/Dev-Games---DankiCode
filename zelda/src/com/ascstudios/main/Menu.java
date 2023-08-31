@@ -147,7 +147,7 @@ public class Menu {
 	
 	public void render(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		g2.setColor(new Color(0, 0, 0, 220));
+		g2.setColor(new Color(0, 0, 0, 100));
 		g2.fillRect(0, 0, Game.WIDTH*Game.SCALE, Game.HEIGHT*Game.SCALE);
 		g.setColor(Color.white);
 		g.setFont(new Font("arial", Font.BOLD, 36));
