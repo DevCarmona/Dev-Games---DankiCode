@@ -63,8 +63,6 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private boolean restartGame= false;
 	
 	public Menu menu;
-	public static int[] pixels;
-	public static int[] lightMap;
 	
 	//	Rotação de Objetos
 	public int mx, my;
@@ -206,7 +204,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		/**/
 		g.dispose();
 		g = bs.getDrawGraphics();
-		g.drawImage(image, 0, 0, WIDTH * SCALE , HEIGHT * SCALE, null);
+		g.drawImage(image, 0, 0, WIDTH * SCALE , HEIGHT * SCALE, null); //	Img que está sendo renderizada todo jogo
 		g.setFont(new Font("arial", Font.BOLD, 20));
 		g.setColor(Color.white);
 		g.drawString("Munição: " + player.ammo, 580, 20);
